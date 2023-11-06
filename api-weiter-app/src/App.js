@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import moment from "moment";
 import "moment/min/locales";
+import { useTranslation } from "react-i18next";
 moment.locale("ar");
 
 const theme = createTheme({
@@ -25,6 +26,8 @@ const theme = createTheme({
 let cancelAxios = null;
 
 function App() {
+  const { t, i18n } = useTranslation();
+
   const [dateAndTimp, setDateAndTimp] = useState("");
   const [temp, setTemp] = useState({
     number: null,
@@ -33,6 +36,9 @@ function App() {
     max: null,
     icon: null,
   });
+  useEffect(() => {
+    i18n.changeLanguage("ar");
+  }, []);
   useEffect(() => {
     setDateAndTimp(moment().format("MMMM Do YYYY, h:mm:ss a"));
     axios
@@ -111,7 +117,7 @@ function App() {
                     style={{ marginRight: "20px", fontWeight: "900" }}
                     variant="h2"
                   >
-                    سطات
+                    {t("Settat")}
                   </Typography>
                   <Typography style={{ marginRight: "20px" }} variant="h6">
                     {dateAndTimp}
