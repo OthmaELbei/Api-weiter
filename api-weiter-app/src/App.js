@@ -5,13 +5,16 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 // axios
 
-import axios from "axios";
-
 // import Matreial Ui
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CloudIcon from "@mui/icons-material/Cloud";
 import Button from "@mui/material/Button";
+
+import axios from "axios";
+import moment from "moment";
+import "moment/min/locales";
+moment.locale("ar");
 
 const theme = createTheme({
   typography: {
@@ -22,6 +25,7 @@ const theme = createTheme({
 let cancelAxios = null;
 
 function App() {
+  const [dateAndTimp, setDateAndTimp] = useState("");
   const [temp, setTemp] = useState({
     number: null,
     descraption: "",
@@ -30,6 +34,7 @@ function App() {
     icon: null,
   });
   useEffect(() => {
+    setDateAndTimp(moment().format("MMMM Do YYYY, h:mm:ss a"));
     axios
       .get(
         "https://api.openweathermap.org/data/2.5/weather?lat=33&lon=-7.6&appid=bc4a45da25486badc3935d5b137c9e81",
@@ -109,7 +114,7 @@ function App() {
                     سطات
                   </Typography>
                   <Typography style={{ marginRight: "20px" }} variant="h6">
-                    03/11/23 الاربعاء
+                    {dateAndTimp}
                   </Typography>
                 </div>
 
