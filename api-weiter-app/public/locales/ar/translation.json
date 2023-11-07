@@ -1,3 +1,14 @@
 {
-  "Settat": "سطات"
+  "Settat": "سطات",
+  "min": "الصعرة",
+  "max": "الكبرة",
+  "clear sky": "سماء صافية ",
+  "few clouds": "برد قليل",
+  "scattered clouds": "غيوم متفرقة",
+  "broken clouds": "غيوم متقطعة",
+  "shower rain": "مطر دش",
+  "rain": "مطر",
+  "thunderstorm": "عاصفة رعدية",
+  "snow": "تلج",
+  "mist": "شَبُّورَة"
 }

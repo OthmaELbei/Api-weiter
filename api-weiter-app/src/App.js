@@ -36,6 +36,22 @@ function App() {
     max: null,
     icon: null,
   });
+
+  const [locale, setLocale] = useState("ar");
+
+  // function
+  function changeLenge() {
+    if (locale == "en") {
+      setLocale("ar");
+      i18n.changeLanguage("ar");
+      moment.locale("ar");
+    } else {
+      setLocale("en");
+      i18n.changeLanguage("en");
+      moment.locale("en");
+    }
+    setDateAndTimp(moment().format("MMMM Do YYYY, h:mm:ss a"));
+  }
   useEffect(() => {
     i18n.changeLanguage("ar");
   }, []);
@@ -106,11 +122,11 @@ function App() {
                 {/* CITY AND time */}
 
                 <div
+                  dir={locale == "ar" ? "rtl" : "ltr"}
                   style={{
                     display: "flex",
                     justifyContent: "start",
                     alignItems: "end",
-                    direction: "rtl",
                   }}
                 >
                   <Typography
@@ -128,13 +144,15 @@ function App() {
 
                 {/* degeree & Descraption */}
                 <div
+                  dir={locale == "ar" ? "rtl" : "ltr"}
                   style={{
                     display: "flex",
-                    direction: "rtl",
+
                     justifyContent: "space-between",
                   }}
                 >
                   {/* TEMP */}
+
                   <div>
                     <div
                       style={{
@@ -154,14 +172,18 @@ function App() {
                       style={{ textAlign: "right", fontSize: "16px" }}
                       variant="h6"
                     >
-                      {temp.description}
+                      {t(temp.description)}
                     </Typography>
                     {/* MIN & MAX */}
                     <div style={{ display: "flex", justifyContent: "end" }}>
-                      <h5> {temp.min}: الصغرة </h5>
+                      <h5>
+                        {t("min")} :{temp.min}
+                      </h5>
                       <h5 style={{ marginLeft: "10px" }}> / </h5>
 
-                      <h5> {temp.max}: الكبرة</h5>
+                      <h5>
+                        {t("max")}: {temp.max}
+                      </h5>
                     </div>
                   </div>
                   <div style={{ marginRight: "20px" }}>
@@ -172,20 +194,25 @@ function App() {
 
                 {/*== CITY AND time == */}
               </div>
+
               {/*== content == */}
             </div>
             <div
+              dir={locale == "ar" ? "rtl" : "ltr"}
               style={{
                 display: "flex",
                 justifyContent: "end",
 
                 marginTop: "10px",
                 width: "70%",
-                direction: "rtl",
               }}
             >
-              <Button style={{ color: "white" }} variant="text">
-                الانجلزية
+              <Button
+                style={{ color: "white" }}
+                variant="text"
+                onClick={changeLenge}
+              >
+                {locale == "en" ? "Arbic" : "الانجلزية"}
               </Button>
             </div>
             {/* == Card ==*/}
